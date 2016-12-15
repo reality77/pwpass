@@ -1,0 +1,23 @@
+**** APPELS REST
+PasswordController : alias 'p'
+- GET(key) : récupère un mot de passe stocké pour la clé key 
+- POST(key) : génère et stocke un mot de passe  pour la clé key
+- POST(key, pwd) : stocke le mot de passe pwd pour la clé key
+- PUT(key) : génère un nouveau mot de passe pwd pour la clé key
+- PUT(key, pwd) : change le mot de passe pwd pour la clé key
+- DELETE(key) : supprimme le mot de passe pour la clé key
+
+**** COUCHES DE SECURITE
+
+* HTTPS
+    * Clé asymétrique (voir si nécessaire?)
+        * Clé symétrique type PGP
+            * (main) - API REST - pas de sécurité
+
+**** STOCKAGE
+* fichier unique contenant un dictionnaire clé -> mot de passe
+* chiffrement du fichier 
+    (clé dans fichier config - voir qui peut accéder au fichier sur le file system ? - droits unix groupe ?)
+* le fichier doit etre constamment locké par l'application pendant qu'elle tourne
+* le contenu du fichier ne doit pas être stocké en mémoire plus que nécessaire (pas de cache). 
+* Utilisation de SecureString quand c'est possible
